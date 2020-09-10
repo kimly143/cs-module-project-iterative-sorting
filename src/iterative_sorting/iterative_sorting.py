@@ -43,8 +43,25 @@ buckets.
 
 What is the time and space complexity of the counting sort algorithm?
 '''
+# index start at 0 so i need + 1 length so counts[maximum] is a valid index
+
+# time complexity is O(n + m) where n is number of items in arr and 
+# m is maximum value
+# space complexity is O(m) where m is maximum since we make new list of
+# m items
+
 def counting_sort(arr, maximum=None):
-    # Your code here
+    if maximum is None:
+        return []
 
+    counts = [0] * (maximum + 1)
+    for num in arr:
+        counts[num] += 1
+    
+    ret_arr = []
+    for i in range(0, len(counts)):
+        if counts[i] > 0:
+            nums = [i] * counts[i]
+            ret_arr += nums
 
-    return arr
+    return ret_arr
